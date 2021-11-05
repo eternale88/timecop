@@ -10,7 +10,8 @@ export const Sidebar = () => {
 	return (
 		<div className="sidebar" data-testid="sidebar">
 			<ul className="sidebar__generic">
-				<li>
+				<li
+				 data-testid="inbox" className="inbox">
 					<span>
 						<FaInbox/>
 					</span>
@@ -18,7 +19,8 @@ export const Sidebar = () => {
 						Inbox
 					</span>
 				</li>
-				<li>
+				<li
+				data-testid="today" className="today">
 					<span>
 						<FaRegCalendar/>
 					</span>
@@ -26,7 +28,8 @@ export const Sidebar = () => {
 						Today
 					</span>
 				</li>
-				<li>
+				<li
+				data-testid="next_7" className="next_7">
 					<span>
 						<FaRegCalendarAlt/>
 					</span>
@@ -39,10 +42,9 @@ export const Sidebar = () => {
 			<div className="sidebar__middle">
 				<span>
 					<FaChevronDown/>
-					<h2>Projects</h2>
 				</span>
+				<h2>Projects</h2>
 			</div>
-
 			<ul className="sidebar__projects">Projects will be here!</ul>
 			Add Project Component Here!!
 		</div>	

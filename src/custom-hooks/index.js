@@ -62,7 +62,7 @@ export const useTasks = (selectedProject) => {
 
 //useProjects hook
 // used to get projects once, why we use get()
-export const usePojects = () => {
+export const useProjects = () => {
 	const [projects, setProjects] = useState([])
 
 	useEffect(() => {
