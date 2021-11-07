@@ -8,9 +8,9 @@ export const ProjectsContext = createContext()
 export const ProjectsProvider = ({children}) => {
 	const { projects, setProjects } = useProjects()
 	return (
-		<ProjectsContext.ProjectsProvider value={{ projects, setProjects }}>
+		<ProjectsContext.Provider value={{ projects, setProjects }}>
 			{children}
-		</ProjectsContext.ProjectsProvider>
+		</ProjectsContext.Provider>
 	)
 }
 

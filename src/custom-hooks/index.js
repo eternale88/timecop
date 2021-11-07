@@ -66,9 +66,9 @@ export const useProjects = () => {
 	const [projects, setProjects] = useState([])
 
 	useEffect(() => {
-		firebase
+		 firebase
 		.firestore()
-		.collection
+		.collection('projects')
 		.where('userId', '==', 'e3dger393ngri')
 		.orderBy('projectId')
 		.get()
