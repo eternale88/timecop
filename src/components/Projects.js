@@ -1,5 +1,6 @@
 import React from 'react'
 import { useProjectsValue, useSelectedProjectValue } from '../context'
+import { IndividualProject } from './IndividualProject'
 
 export const Projects = ({activeValue = true}) => {
 	const [active, setActive ] = React.useState(activeValue)
@@ -17,7 +18,7 @@ export const Projects = ({activeValue = true}) => {
 					className={
 						active === project.projectId
 						? 'active sidebar__project'
-						: 'active sidebar__project'
+						: 'sidebar__project'
 					}
 					onClick={() => {
 						setActive(project.projectId)
@@ -30,7 +31,7 @@ export const Projects = ({activeValue = true}) => {
             }
           }}
 				>
-				{project.name}
+					<IndividualProject project={project}/>
 				</li>
 			)
 		})
