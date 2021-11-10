@@ -1,12 +1,32 @@
-import React from 'react'
+import React, {useState, useEffect } from 'react'
 import { Checkbox } from './Checkbox'
 import { useTasks } from '../custom-hooks'
+import { collatedTasks } from '../constants';
+import { getTitle, getCollatedTitle, collatedTasksExist } from '../helpers';
+import { useSelectedProjectValue, useProjectsValue } from '../context';
 
 export const Tasks = () => {
-	const { tasks } = useTasks('1')
-	console.log(tasks)
+	const { selectedProject } = useSelectedProjectValue()
+	const { projects } = useProjectsValue()
+	const { tasks } = useTasks(selectedProject)
+	//console.log(tasks)
 
 	let projectName = ''
+
+	//get regular self made tasks, instead of inbox, today and next_7 etc
+	if(projects && selectedProject && !collatedTasksExist(selectedProject)) {
+		projectName = getTitle(projects, selectedProject)
+		console.log('projectName 1: ', projectName)
+	}
+	//get tasks that are collated,  inbox, today and next_7 etc
+	if(collatedTasksExist(selectedProject) && selectedProject) {
+		projectName = getCollatedTitle(collatedTasks, selectedProject)
+		console.log('projectName 2: ', projectName)
+	}
+
+	useEffect(() => {
+		document.title = `${projectName}: TimeCop Task`
+	})
 	return (
 		<div className="tasks" data-testid="tasks">
 			<h2 data-testid="project-name">{projectName}</h2>
