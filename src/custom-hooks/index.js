@@ -38,7 +38,6 @@ export const useTasks = (selectedProject) => {
 				id: task.id,
 				...task.data(),
 			}))
-
 			//our setTasks hook
 			setTasks(
 				//get next 7 day projects back, if the difference in the task and todays date is less than 7 we know it's one of the next 7 days task and return it, else mark it as not archived and give them back
