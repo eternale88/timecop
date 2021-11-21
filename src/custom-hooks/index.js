@@ -38,6 +38,7 @@ export const useTasks = (selectedProject) => {
 				id: task.id,
 				...task.data(),
 			}))
+			console.log(newTasks)
 			//our setTasks hook
 			setTasks(
 				//get next 7 day projects back, if the difference in the task and todays date is less than 7 we know it's one of the next 7 days task and return it, else mark it as not archived and give them back
@@ -77,12 +78,13 @@ export const useProjects = () => {
 				//if want to delete must alway pass docId
 				docId: project.id,
 			}))
+			console.log(allProjects)
 			//this avoids infinite loop, as otherwise it would set projects, everytime and because we have project in dependency array it would keep running it, this way it makes sure a project has actually changed
 			if(JSON.stringify(allProjects) !== JSON.stringify(projects)) {
 				setProjects(allProjects)
 			}
 		})
-		
-	}, [projects])
+		// maybe add projects back
+	}, [])
 	return {projects, setProjects}
 }
