@@ -4,13 +4,13 @@ import { firebase } from '../firebase';
 import { generatePushId } from '../helpers';
 import { useProjectsValue } from '../context';
 
-export const AddProject = ({shouldShow = false}) => {
+export const AddProject = ({ shouldShow = false }) => {
 
 	const [show, setShow] = useState(shouldShow)
 	const [projectName, setProjectName] = useState('')
 
 	const projectId = generatePushId()
-	const { setProjects } = useProjectsValue()
+	const { projects, setProjects } = useProjectsValue()
 
 	const addProject = () => {
 		projectName && 
@@ -24,7 +24,8 @@ export const AddProject = ({shouldShow = false}) => {
 			})
 			.then(() => {
 				//forces a page refresh from firebase
-				setProjects([])
+				//clear local state, and reload projects
+				setProjects([...projects])
 				setProjectName('')
 				setShow(false)
 			})
@@ -32,7 +33,7 @@ export const AddProject = ({shouldShow = false}) => {
 	return (
 		<div className="add-project" data-testid="add-project">
 			{show && (
-				<div className="add-project__input">
+				<div className="add-project__input" data-testid="add-project-inner">
 					<input
 						value={projectName}
 						onChange={(e) => setProjectName(e.target.value)}
@@ -43,6 +44,7 @@ export const AddProject = ({shouldShow = false}) => {
 					<button 
 						className="add-project__submit"
 						type="button"
+						data-testid="add-project-submit"
 						onClick={() => addProject()}
 						>
 						Add Project
@@ -56,6 +58,14 @@ export const AddProject = ({shouldShow = false}) => {
 					</span>
 				</div>
 			)}
+			<span className="add-project__plus">+</span>
+			<span 
+				className="add-project__text"
+				data-testid="add-project-action"
+				onClick={() => setShow(!show)}
+				>
+				Add Project
+			</span>
 		</div>
 	)
 }

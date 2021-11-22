@@ -6,6 +6,6 @@ import './App.scss'
 
 
 render(
-    <App />,
+     <App />,
   document.getElementById('root')
 )

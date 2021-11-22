@@ -7,7 +7,7 @@ import { useSelectedProjectValue, useProjectsValue } from '../context';
 
 export const Tasks = () => {
 	const { selectedProject } = useSelectedProjectValue()
-	console.log('selected project', selectedProject)
+	//console.log('selected project', selectedProject)
 	const { projects } = useProjectsValue()
 	const { tasks } = useTasks(selectedProject)
 	//console.log(tasks)
@@ -18,7 +18,7 @@ export const Tasks = () => {
 	//get tasks that are collated,  inbox, today and next_7 etc
 	if(collatedTasksExist(selectedProject) && selectedProject) {
 		projectName = getCollatedTitle(collatedTasks, selectedProject)?.name
-		console.log('projectName 2: ', projectName)
+		//console.log('projectName 2: ', projectName)
 	}
 
 		//get regular self made tasks, instead of inbox, today and next_7 etc
@@ -29,7 +29,7 @@ export const Tasks = () => {
 	useEffect(() => {
 		document.title = `${projectName}: TimeCop Task`
 	})
-	console.log('tasks', tasks)
+	//console.log('tasks', tasks)
 	return (
 		<div className="tasks" data-testid="tasks">
 			<h2 data-testid="project-name">{projectName}</h2>
