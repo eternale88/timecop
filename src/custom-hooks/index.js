@@ -85,6 +85,6 @@ export const useProjects = () => {
 			}
 		})
 		// maybe add projects back
-	}, [])
+	}, [projects])
 	return {projects, setProjects}
 }
