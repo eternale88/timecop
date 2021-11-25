@@ -19,13 +19,11 @@ export const Tasks = () => {
 	//get tasks that are collated,  inbox, today and next_7 etc
 	if(collatedTasksExist(selectedProject) && selectedProject) {
 		projectName = getCollatedTitle(collatedTasks, selectedProject)?.name
-		//console.log('projectName 2: ', projectName)
 	}
 
 		//get regular self made tasks, instead of inbox, today and next_7 etc
 		if(projects && selectedProject && !collatedTasksExist(selectedProject)) {
 			projectName = getTitle(projects, selectedProject)?.name
-			console.log('projectName 1: ', projectName)
 		}
 	useEffect(() => {
 		document.title = `${projectName}: TimeCop Task`

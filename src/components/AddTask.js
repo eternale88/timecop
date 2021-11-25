@@ -4,6 +4,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import { firebase } from '../firebase';
 import { useSelectedProjectValue } from '../context';
+import { ProjectOverlay } from './ProjectOverlay';
 // import { ProjectOverlay } from './ProjectOverlay';
 // import { TaskDate } from './TaskDate';
 
@@ -37,7 +38,7 @@ const addTask = () => {
 		task &&
 		projectId &&
 		firebase.firestore()
-				.collection('task')
+				.collection('tasks')
 				.add({
 					archived: false,
 					projectId,
@@ -91,7 +92,11 @@ const addTask = () => {
 							</div>
 						</React.Fragment>
 					)}
-					<p>Project Overlay here</p>
+					<ProjectOverlay 
+					  setProject={setProject} 
+						showProjectOverlay={showProjectOverlay} 
+						setShowProjectOverlay={setShowProjectOverlay} 
+					/>
 					<p>TaskDate here</p>
 					<input 
 						type="text" 
