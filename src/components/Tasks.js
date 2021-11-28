@@ -8,27 +8,24 @@ import { AddTask } from './AddTask';
 
 export const Tasks = () => {
 	const { selectedProject } = useSelectedProjectValue()
-	//console.log('selected project', selectedProject)
 	const { projects } = useProjectsValue()
 	const { tasks } = useTasks(selectedProject)
-	//console.log(tasks)
 
 	let projectName = ''
 
 
 	//get tasks that are collated,  inbox, today and next_7 etc
 	if(collatedTasksExist(selectedProject) && selectedProject) {
-		projectName = getCollatedTitle(collatedTasks, selectedProject)?.name
+		projectName = getCollatedTitle(collatedTasks, selectedProject).name
 	}
 
 		//get regular self made tasks, instead of inbox, today and next_7 etc
-		if(projects && selectedProject && !collatedTasksExist(selectedProject)) {
-			projectName = getTitle(projects, selectedProject)?.name
+		if(projects && projects.length > 0 && selectedProject && !collatedTasksExist(selectedProject)) {
+			projectName = getTitle(projects, selectedProject).name
 		}
 	useEffect(() => {
 		document.title = `${projectName}: TimeCop Task`
 	})
-	//console.log('tasks', tasks)
 	return (
 		<div className="tasks" data-testid="tasks">
 			<h2 data-testid="project-name">{projectName}</h2>

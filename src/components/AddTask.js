@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 import { firebase } from '../firebase';
 import { useSelectedProjectValue } from '../context';
 import { ProjectOverlay } from './ProjectOverlay';
-// import { ProjectOverlay } from './ProjectOverlay';
-// import { TaskDate } from './TaskDate';
+ import { TaskDate } from './TaskDate';
 
 //reusable, used for both main add task, and quick add task functionality
 export  const AddTask = ({showAddTaskMain = true, shouldShowMain = false, showQuickAddTask, setShowQuickAddTask }) => {
@@ -37,7 +36,8 @@ const addTask = () => {
 	return (
 		task &&
 		projectId &&
-		firebase.firestore()
+		firebase
+				.firestore()
 				.collection('tasks')
 				.add({
 					archived: false,
@@ -75,7 +75,7 @@ const addTask = () => {
 			 }
 			{(showMain || showQuickAddTask) && (
 				<div className="add-task__main" data-testid="add-task-main">
-					{showQuickAddTask &&(
+					{showQuickAddTask && (
 						<React.Fragment>
 							<div data-testid="quick-add-task">
 								<h2 className="header">Quick Add Task</h2>
@@ -97,7 +97,11 @@ const addTask = () => {
 						showProjectOverlay={showProjectOverlay} 
 						setShowProjectOverlay={setShowProjectOverlay} 
 					/>
-					<p>TaskDate here</p>
+					<TaskDate 
+						setTaskDate={setTaskDate}
+						showTaskDate={showTaskDate}
+						setShowTaskDate={setShowTaskDate}
+					/>
 					<input 
 						type="text" 
 						className="add-task__content"

@@ -16,7 +16,7 @@ export const useTasks = (selectedProject) => {
 		let unsubscribe = firebase
 		.firestore()
 		.collection('tasks')
-		.where('userId', '==', 'e3dger393ngri')
+		.where('userId', '==', process.env.REACT_APP_FIREBASE_USERNAME)
 
 		//if we have a project and it doesn't exist in the collated tasks
 		unsubscribe =
@@ -30,13 +30,13 @@ export const useTasks = (selectedProject) => {
           ))
         : selectedProject === 'INBOX' || selectedProject === 0
         ? (unsubscribe = unsubscribe.where('date', '==', ''))
-        : unsubscribe;
+        : unsubscribe
 
 		unsubscribe = unsubscribe.onSnapshot(snapshot => {
 			//getting docs from the firestore
 			const newTasks = snapshot.docs.map(task => ({
 				id: task.id,
-				...task.data(),
+				...task.data()
 			}))
 			console.log(newTasks)
 			//our setTasks hook
@@ -46,12 +46,11 @@ export const useTasks = (selectedProject) => {
           ? newTasks.filter(
               task =>
                 moment(task.date, 'DD-MM-YYYY').diff(moment(), 'days') <= 7 
-								&& moment(task.date).diff(moment(), 'days') >= 0
                 && task.archived !== true
             )
           : newTasks.filter(task => task.archived !== true)
-      );
-      setArchivedTasks(newTasks.filter(task => task.archived !== false));
+      )
+      setArchivedTasks(newTasks.filter(task => task.archived !== false))
 		})
 		//we unsubscribe because we don't want to be looking for projects all the time, we only want to look when there's a new selectedProject
 		//a useEffect cleanup function
@@ -69,13 +68,20 @@ export const useProjects = () => {
 		 firebase
 		.firestore()
 		.collection('projects')
-		.where('userId', '==', 'e3dger393ngri')
+		.where('userId', '==', process.env.REACT_APP_FIREBASE_USERNAME)
 		.orderBy('projectId')
 		.get()
 		.then((snapshot) => {
+			//this would work, but sequence isn't maintained with destructuring so condition below doesn't stop excess db calls, so define the sequence
+			// const allProjects = snapshot.docs.map((project) => ({
+			// 	...project.data(),
+			// 	//if want to delete must alway pass docId
+			// 	docId: project.id,
+			// }))
 			const allProjects = snapshot.docs.map((project) => ({
-				...project.data(),
-				//if want to delete must alway pass docId
+				name: project.data().name,
+				userId: project.data().userId,
+				projectId: project.data().projectId,
 				docId: project.id,
 			}))
 			console.log(allProjects)

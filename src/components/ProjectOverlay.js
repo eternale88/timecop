@@ -5,7 +5,7 @@ export const ProjectOverlay = ({setProject, showProjectOverlay, setShowProjectOv
 
 	const { projects } = useProjectsValue()
 	return (
-		projects && showProjectOverlay &&(
+		projects && showProjectOverlay && (
 			<div className="project-overlay" data-testid="project-overlay">
 				<ul className="project-overlay__list">
 					{
