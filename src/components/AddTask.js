@@ -113,7 +113,11 @@ const addTask = () => {
 							className="add-task__submit"
 							data-testid="add-task"
 							type="button"
-							onClick={() => addTask()}
+							onClick={() =>
+								showQuickAddTask
+									? addTask() && setShowQuickAddTask(false)
+									: addTask()
+							}
 							>
 							Add Task
 						</button>

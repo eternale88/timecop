@@ -41,6 +41,7 @@
 		z-index: 1;
 		top: 85px;
 		border-radius: 3px;
+		right: 100px;
 	}
 
 	@mixin va($va-align: center) {
@@ -640,7 +641,7 @@
   @include box-overlay();
   background-color: #fff;
   width: 200px;
-  right: 0;
+  right: auto;
 
   &__list li {
     @include task-item();
