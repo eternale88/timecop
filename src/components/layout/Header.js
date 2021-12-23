@@ -19,6 +19,9 @@ export const Header = ({darkMode, setDarkMode}) => {
 						data-testid="quick-add-task-action" 
 						className="settings__add"
 						onClick={() => {setShowQuickAddTask(true); setShouldShowMain(true)}}
+						onKeyDown={() => {setShowQuickAddTask(true); setShouldShowMain(true)}}
+						tabIndex={0}
+						role="button"
 					>
 						+
 					</li>
@@ -26,6 +29,9 @@ export const Header = ({darkMode, setDarkMode}) => {
 						data-testid="dark-mode-action" 
 						className="settings__darkmode"
 					  onClick={() => setDarkMode(!darkMode)}
+					  onKeyDown={() => setDarkMode(!darkMode)}
+						role="button"
+						tabIndex={0}
 					>
 						<FaPizzaSlice/>
 					</li>
