@@ -17,21 +17,32 @@ export const Sidebar = () => {
 	return (
 		<div className="sidebar" data-testid="sidebar">
 			<ul className="sidebar__generic">
-				<li
-				 data-testid="inbox" 
-				 className={active === 'inbox' ? 'active' : undefined}
-				 onClick={() => {
-					 setActive('inbox')
-					 setSelectedProject('INBOX')
-				 }}
-				 >
-					<span>
-						<FaInbox/>
-					</span>
-					<span>
-						Inbox
-					</span>
-				</li>
+			<li
+				data-testid="inbox"
+				className={active === 'inbox' ? 'active' : undefined}
+			>
+			<div
+				data-testid="inbox-action"
+				aria-label="Show inbox tasks"
+				tabIndex={0}
+				role="button"
+				onClick={() => {
+					setActive('inbox');
+					setSelectedProject('INBOX');
+				}}
+				onKeyDown={(e) => {
+					if (e.key === 'Enter') {
+						setActive('inbox');
+						setSelectedProject('INBOX');
+					}
+				}}
+			>
+				<span>
+					<FaInbox />
+				</span>
+				<span>Inbox</span>
+			</div>
+		</li>
 				<li
 				data-testid="today" 
 				className={active === 'today' ? 'active' : undefined}

@@ -378,11 +378,12 @@
 				cursor: pointer;
 				line-height: 1.50;
 				font-size: 15px;
+				//padding-left: 0;
+      	//padding-right: 0;
 				// padding-left: 0;
 				// padding-right: 0;
 				padding: 10px 5px;
 
-	
 				// div:nth-child(1){
 				// 	display: -webkit-box;
 				// 	display: -ms-flexbox;
@@ -390,6 +391,10 @@
 				// 	padding: 10px 0 10px 10px;
 				// 	width: 100%;
 	
+				div:nth-child(1) {
+					//padding: 10px 0px 10px 10px;
+					width: 100%;
+				
 					span:first-of-type {
 						margin-right: 10px;
 						display: -webkit-box;
@@ -405,7 +410,10 @@
 							color: #555;
 						}
 					}
-				// }
+				 }
+				 span:nth-child(1) {
+					margin-right: 5px;
+				 }
 	
 				&.active, &:hover {
 					font-weight: bold;
