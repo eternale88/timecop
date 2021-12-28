@@ -50,6 +50,12 @@ export const Sidebar = () => {
 					setActive('today')
 					setSelectedProject('TODAY')
 				}}
+				onKeyDown={(e) => {
+					if (e.key === 'Enter') {
+						setActive('today');
+						setSelectedProject('TODAY');
+					}
+				}}
 				>
 					<span>
 						<FaRegCalendar/>
@@ -67,6 +73,12 @@ export const Sidebar = () => {
 					setActive('next_7')
 					setSelectedProject('NEXT_7')
 				}}
+				onKeyDown={(e) => {
+					if (e.key === 'Enter') {
+						setActive('next_7');
+						setSelectedProject('NEXT_7');
+					}
+				}}
 				>
 					<span>
 						<FaRegCalendarAlt/>
@@ -79,6 +91,11 @@ export const Sidebar = () => {
 
 			<div className="sidebar__middle" 
 			  onClick={() => setShowProjects(!showProjects)}
+			  onKeyDown={(e) => {
+          if (e.key === 'Enter') setShowProjects(!showProjects);
+        }}
+				role="button"
+				tabIndex={0}
 			>
 				<span>
 					<FaChevronDown className={!showProjects ? 'hidden-projects' : undefined}/>

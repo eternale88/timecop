@@ -1,5 +1,6 @@
 import React from 'react'
 import { useProjectsValue } from '../context'
+import PropTypes from 'prop-types'
 
 export const ProjectOverlay = ({setProject, showProjectOverlay, setShowProjectOverlay}) => {
 
@@ -17,6 +18,15 @@ export const ProjectOverlay = ({setProject, showProjectOverlay, setShowProjectOv
 									setProject(project.projectId)
 									setShowProjectOverlay(false)
 								}}
+								onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    setProject(project.projectId);
+                    setShowProjectOverlay(false);
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+                aria-label="Select the task project"
 								>
 								{project.name}
 								</div>
@@ -27,4 +37,8 @@ export const ProjectOverlay = ({setProject, showProjectOverlay, setShowProjectOv
 			</div>
 		)
 	)
+}
+
+ProjectOverlay.propTypes = {
+  projects: PropTypes.array
 }
