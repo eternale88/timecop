@@ -52,4 +52,4 @@ export const Header = ({darkMode, setDarkMode}) => {
 Header.propTypes = {
   darkMode: PropTypes.bool.isRequired,
   setDarkMode: PropTypes.func.isRequired,
-};
+}

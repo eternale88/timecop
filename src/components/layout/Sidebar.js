@@ -44,7 +44,8 @@ export const Sidebar = () => {
 			</div>
 		</li>
 				<li
-				data-testid="today" 
+				data-testid="today-action"
+        aria-label="Show today's tasks"
 				className={active === 'today' ? 'active' : undefined}
 				onClick={() => {
 					setActive('today')
@@ -65,9 +66,9 @@ export const Sidebar = () => {
 					</span>
 				</li>
 				<li
-				data-testid="next_7"
-				className="next_7"
-				data-testid="next_7" 
+				data-testid="next_7-action"
+        aria-label="Show tasks for the next 7 days"
+				className="next_7" 
 				className={active === 'next_7' ? 'active' : undefined}
 				onClick={() => {
 					setActive('next_7')
@@ -90,6 +91,7 @@ export const Sidebar = () => {
 			</ul>
 
 			<div className="sidebar__middle" 
+				aria-label="Show/hide projects"
 			  onClick={() => setShowProjects(!showProjects)}
 			  onKeyDown={(e) => {
           if (e.key === 'Enter') setShowProjects(!showProjects);
