@@ -15,7 +15,7 @@ export const Checkbox = ({id, taskDesc}) => {
 		<div 
 			className="checkbox-holder" 		     
 			data-testid="checkbox-action"
-			onClick={() => archiveTask()}
+			onClick={() => archiveTask}
 			onKeyDown={() => archiveTask()}
 			role="button"
 			tabIndex={0}

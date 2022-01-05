@@ -1,9 +1,6 @@
 import React from 'react'
 import { render, cleanup, fireEvent } from '@testing-library/react'
 import { Checkbox } from '../components/Checkbox'
-
-import mockFirebase from '../mocks/firebase'
-
 beforeEach(cleanup) // clean the DOM
 
 //mocking each method on firebase call for component
@@ -32,6 +29,13 @@ describe('<Checkbox />', () => {
 	
 			expect(queryByTestId('checkbox-action')).toBeTruthy()
 			fireEvent.click(queryByTestId('checkbox-action'))
+		})
+
+		it('renders the task checkbox and accepts a onKeyDown', () => {
+			const { queryByTestId } = render(<Checkbox id="1" taskDesc="Finish task"/>)
+	
+			expect(queryByTestId('checkbox-action')).toBeTruthy()
+			fireEvent.keyDown(queryByTestId('checkbox-action'))
 		})
 	})
 })
